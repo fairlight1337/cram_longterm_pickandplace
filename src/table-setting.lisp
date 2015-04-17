@@ -57,8 +57,9 @@
 
 (defun pose-link-origin-distance (pose-stamped link)
   (let ((pose-in-link (cl-tf2:do-transform *tf2* pose-stamped link)))
-    (cl-transforms:v-dist (cl-transforms:origin pose-in-link)
-               (cl-transforms:make-identity-vector))))
+    (cl-transforms:v-dist
+     (cl-transforms:origin (cl-transforms-plugin:pose pose-in-link))
+     (cl-transforms:make-identity-vector))))
 
 (defun clear-scene ()
   (setf *scene-context* (make-hash-table)))
